@@ -23,6 +23,7 @@
     </div>
 </template>
 <script>
+    import jwtDecode from 'jwt-decode'
     export default {
         data() {
             return {
@@ -37,6 +38,9 @@
                 const res = await this.$axios.post('/api/users/login', this.user);
                 if(res.status === 200){
                     localStorage.setItem("eleToken",res.data);
+                    const user = jwtDecode(res.data);
+                    console.log(user);
+                    await this.$store.dispatch("setUser",user);
                     this.$Message.success("登录成功");
                     await this.$router.push('/');
                 }

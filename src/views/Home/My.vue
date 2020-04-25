@@ -1,11 +1,11 @@
 <template>
-    <div id="my" class="flex-column">
+    <div id="my" class="flex-column-top home-center">
         <img src="../../assets/image/avatar1.jpg" alt="头像" title="头像" class="avatar">
         <div class="item flex-vertical-start" v-for="item in list" :key="item.title">
             <span class="pre-title">{{item.title}}</span>
             <span>{{item.value}}</span>
         </div>
-        <button class="out-login">退出登录</button>
+        <button class="out-login" @click="outLogin">退出登录</button>
     </div>
 </template>
 <script>
@@ -15,20 +15,30 @@
             return {
                 list:[
                     {
-                        title:"账号",
-                        value:"408718358"
+                        title:"昵称",
+                        value:""
                     },
                     {
-                        title:"昵称",
-                        value:"408718358"
+                        title:"账号",
+                        value:""
                     },
                     {
                         title:"GitHub",
                         value:"http://www.github.com/wangji……"
                     },
-
                 ]
             }
+        },
+        methods:{
+            outLogin(){
+                this.$router.push('/login');
+            }
+
+        },
+        created() {
+            const user = this.$store.getters.GET_USER;
+            this.list[0].value = user.userName;
+            this.list[1].value = user.nickName;
         }
     }
 </script>

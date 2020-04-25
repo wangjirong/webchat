@@ -1,27 +1,45 @@
 <template>
     <div id="home">
-        <elHeader :title="currentTitle"></elHeader>
+        <elHeader :item="item"></elHeader>
+
         <router-view></router-view>
-        <elFooter @getMenuTitle="getMenuTitle"></elFooter>
+        <elFooter @getMenuItem="getMenuItem"></elFooter>
     </div>
 </template>
 <script>
     export default {
-        name:"Home",
-        data(){
+        name: "Home",
+        data() {
             return {
-                currentTitle:""
+                item: {}
             }
         },
-        components:{
-            elHeader:()=>import('../components/header'),
-            elFooter:()=>import('../components/footer')
+        components: {
+            elHeader: () => import('../components/header'),
+            elFooter: () => import('../components/footer')
         },
-        methods:{
-            getMenuTitle(title){
-                this.currentTitle = title;
+        methods: {
+
+            getMenuItem(item) {
+                this.$nextTick(() => {
+                    this.item = item;
+                })
+
+
             }
-        }
+        },
+        // created() {
+        //     console.log(this)
+        //     this.$socket.emit('login', {
+        //         username: '老王',
+        //         password: 'password'
+        //     });
+        //
+        //     //接收服务端的信息
+        //     this.sockets.subscribe('relogin', (data) => {
+        //         console.log(data)
+        //     })
+        // }
 
     }
 </script>

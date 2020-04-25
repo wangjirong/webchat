@@ -10,34 +10,37 @@ import './style/footer_header.less'
 import './style/home.less'
 import './style/login_register.less'
 
+
 import './util/init.js'
 
 import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
+
 Vue.use(ViewUI);
 
-// import SocketIO from 'vue-socket.io'
-// Vue.use(new SocketIO({
-//   debug:true,
-//   connecting:'http://localhost:3000',
-//   vuex:{
-//   }
-// }));
-// this.$socket.emit('login',{
-//   username: 'username',
-//   password: 'password'
-// });
-// this.sockets.subscribe('relogin', (data) => {
-//   console.log(data)
-// });
+
+import VueSocketIO from 'vue-socket.io'
+
+Vue.use(new VueSocketIO({
+    debug: true,
+    // 服务器端地址
+    connection: 'http://localhost:3000',
+    vuex: {
+    }
+}))
+
+
+
+
 
 import axios from './util/axios'
+
 Vue.prototype.$axios = axios;
 
 Vue.config.productionTip = false;
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
 }).$mount('#app');
