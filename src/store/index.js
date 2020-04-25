@@ -8,7 +8,11 @@ const User = {
 }
 export default new Vuex.Store({
     state: {
-        user: {}
+        user: {},
+        friends:{
+            online_friends:[],
+
+        }
     },
     getters: {
         [User.GET_USER]: state => state.user
