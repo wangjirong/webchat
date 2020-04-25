@@ -1,7 +1,7 @@
 <template>
     <header id="header" class="flex-vertical">
         <div class="item center">
-            <img src="../assets/image/avatar1.jpg" alt="" class="avatar">
+            <img :src="user.avatar" alt="" class="avatar">
         </div>
         <div class="item center">
             {{item.title}}
@@ -14,12 +14,15 @@
 <script>
     export default {
         name: "Header",
+        data(){
+            return{
+                user:JSON.parse(sessionStorage.getItem('user')),
+            }
+        },
+
         props: {
             item: Object
         },
-        mounted() {
-            console.log(this.item)
-        }
     }
 </script>
 

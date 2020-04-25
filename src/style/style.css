@@ -29,10 +29,10 @@
 }
 
 .home-center {
-    height: 80vh;
     width: 100vw;
+    margin-top: 10vh;
     padding: .8rem 1rem;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
 }
 
@@ -45,6 +45,16 @@
 .flex-vertical-start {
     display: flex;
     /*justify-content: space-between;*/
+    align-items: center;
+}
+.flex-vertical-end{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.flex-vertical-space{
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 

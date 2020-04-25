@@ -1,0 +1,63 @@
+#chat{
+  .top-nav{
+    padding: .5rem 1rem;
+    height: 10vh;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    i{
+      font-size: 1.5rem;
+    }
+    .user-group-info{
+      .user-group-name{
+        color: #666666;
+        font-size: 1rem;
+      }
+      .state{
+        color: #999999;
+        font-size: .7rem;
+      }
+    }
+  }
+}
+.center-messages{
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin-top: 10vh;
+  padding: 1rem;
+  .my-message{
+    width: 100%;
+    margin: .5rem 0;
+    .avatar{
+      height: 3rem;
+      width: 3rem;
+    }
+    .msg{
+     background-color: #009688;
+      color: #ffffff;
+      padding: .5rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+    }
+  }
+}
+.input-text-area{
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+  .send{
+    width: 100%;
+    padding: 0 1rem;
+    .input-message{
+      width: 78% !important;
+    }
+    button{
+      margin-left: .5rem;
+    }
+  }
+}

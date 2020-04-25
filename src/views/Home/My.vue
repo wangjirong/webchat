@@ -1,6 +1,6 @@
 <template>
     <div id="my" class="flex-column-top home-center">
-        <img src="../../assets/image/avatar1.jpg" alt="头像" title="头像" class="avatar">
+        <img :src="user.avatar" alt="头像" title="头像" class="avatar">
         <div class="item flex-vertical-start" v-for="item in list" :key="item.title">
             <span class="pre-title">{{item.title}}</span>
             <span>{{item.value}}</span>
@@ -13,6 +13,7 @@
         name: "My",
         data() {
             return {
+                user:JSON.parse(sessionStorage.getItem("user")),
                 list:[
                     {
                         title:"昵称",

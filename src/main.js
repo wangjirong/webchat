@@ -9,6 +9,7 @@ import './style/init.css'
 import './style/footer_header.less'
 import './style/home.less'
 import './style/login_register.less'
+import './style/chat.less'
 
 
 import './util/init.js'

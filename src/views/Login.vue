@@ -24,6 +24,7 @@
 </template>
 <script>
     import jwtDecode from 'jwt-decode'
+
     export default {
         data() {
             return {
@@ -36,14 +37,16 @@
         methods: {
             async login() {
                 const res = await this.$axios.post('/api/users/login', this.user);
-                if(res.status === 200){
-                    localStorage.setItem("eleToken",res.data);
+                if (res.status === 200) {
+                    localStorage.setItem("eleToken", res.data);
                     const user = jwtDecode(res.data);
                     console.log(user);
-                    await this.$store.dispatch("setUser",user);
+                    sessionStorage.setItem("user",JSON.stringify(user));
+                    await this.$store.dispatch("setUser", user);
                     this.$Message.success("登录成功");
                     await this.$router.push('/');
-                }
+                } else if (res.status === 211) this.$Message.error("密码错误");
+                else if (res.status === 222) this.$Message.error("该账号不存在");
             }
         }
     }
