@@ -1,18 +1,29 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="home">
+        <elHeader :title="currentTitle"></elHeader>
+        <router-view></router-view>
+        <elFooter @getMenuTitle="getMenuTitle"></elFooter>
+    </div>
 </template>
-
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+    export default {
+        name:"Home",
+        data(){
+            return {
+                currentTitle:""
+            }
+        },
+        components:{
+            elHeader:()=>import('../components/header'),
+            elFooter:()=>import('../components/footer')
+        },
+        methods:{
+            getMenuTitle(title){
+                this.currentTitle = title;
+            }
+        }
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+    }
 </script>
+
+
