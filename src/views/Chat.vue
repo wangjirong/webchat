@@ -12,12 +12,12 @@
             <div class="message" v-for="message in chatMessage" :key="message.id">
                 <!--当前消息是本人发的-->
                 <div class="my-message flex-vertical-end"
-                     v-if="message.sendUser.nickName === nickName">
+                     v-if="message.user.nickName === nickName">
                     <span class="msg">{{message.message}}</span>
-                    <img :src="message.sendUser.avatar" alt="" class="avatar">
+                    <img :src="message.user.avatar" alt="" class="avatar">
                 </div>
                 <div class="my-message flex-vertical-start" v-else>
-                    <img :src="message.sendUser.avatar" alt="" class="avatar">
+                    <img :src="message.user.avatar" alt="" class="avatar">
                     <span class="msg">{{message.message}}</span>
                 </div>
             </div>
@@ -40,7 +40,7 @@
         data() {
             return {
                 message: "",
-                nickName:this.$store.getters.GET_USER.nickName,
+                nickName: this.$store.getters.GET_USER.nickName,
                 toUser: this.$store.getters.GET_FRIEND_LIST.find(r => r.nickName === this.$route.query.nickName),
                 user: JSON.parse(sessionStorage.getItem("user")),
                 chatMessage: this.$store.getters.GET_FRIEND_MESSAGE_LIST,
@@ -51,36 +51,40 @@
                 this.$router.push('/message')
             },
             sendMessage() {
-                this.$socket.emit("sendMessage", new Message(this.message, this.$store.getters.GET_USER, this.toUser));
-                this.handleMessage('my-message', this.user, this.message)
+                const newMessage = new Message(this.message, this.$store.getters.GET_USER, this.toUser);
+                console.log(newMessage)
+                this.$socket.emit("sendMessage", newMessage);
+                // this.handleMessage('my-message', this.user, this.message)
+                const msgList = this.$store.getters.GET_FRIEND_MESSAGE_LIST;
+                msgList.push(newMessage)
+                this.$store.dispatch('setFriendMessageList', msgList);
                 this.message = '';
             },
-            handleMessage(type, user, message) {
-                //头像
-                const avatar = document.createElement('img');
-                avatar.setAttribute("src", user.avatar);
-                avatar.className = "avatar";
-                //消息
-                const newMessage = document.createElement('span');
-                newMessage.innerHTML = message;
-                newMessage.className = "msg";
-                const div = document.createElement('div');
-                if (type === 'my-message') {
-                    div.className = 'my-message flex-vertical-end';
-                    div.appendChild(newMessage);
-                    div.appendChild(avatar);
-                } else {
-                    div.className = 'my-message flex-vertical-start';
-                    div.appendChild(avatar);
-                    div.appendChild(newMessage);
-                }
-                let msgBox = document.getElementById('messageBox');
-                msgBox.appendChild(div);
-            }
+            // handleMessage(type, user, message) {
+            //     //头像
+            //     const avatar = document.createElement('img');
+            //     avatar.setAttribute("src", user.avatar);
+            //     avatar.className = "avatar";
+            //     //消息
+            //     const newMessage = document.createElement('span');
+            //     newMessage.innerHTML = message;
+            //     newMessage.className = "msg";
+            //     const div = document.createElement('div');
+            //     if (type === 'my-message') {
+            //         div.className = 'my-message flex-vertical-end';
+            //         div.appendChild(newMessage);
+            //         div.appendChild(avatar);
+            //     } else {
+            //         div.className = 'my-message flex-vertical-start';
+            //         div.appendChild(avatar);
+            //         div.appendChild(newMessage);
+            //     }
+            //     let msgBox = document.getElementById('messageBox');
+            //     msgBox.appendChild(div);
+            // }
         },
-        created() {
-            console.log(this.$store.getters.GET_USER.nickName);
-            console.log(this.chatMessage)
+        mounted() {
+            this.$store.dispatch('setCurrentFriend', this.toUser)
         }
     }
 </script>

@@ -68,8 +68,7 @@
             getMessage(data) {
                 const messageList = this.$store.getters.GET_FRIEND_MESSAGE_LIST;
                 messageList.push(data);
-                this.$store.dispatch('setFriendMessageList', messageList)
-                console.log(this.$store.getters.GET_FRIEND_MESSAGE_LIST)
+                this.$store.dispatch('setFriendMessageList', messageList);
             },
             disconnect() {
 
