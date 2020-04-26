@@ -1,7 +1,7 @@
 export default class Chat {
     /*
-    * @user 当前登录用户
-    * @friendList  好友列表
+    * @param user 当前登录用户
+    * @param friendList  好友列表
     * @groupList  群聊列表
     * @onlineFriendList  在线好友
     * @currentFriend  当前聊天好友

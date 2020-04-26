@@ -19,16 +19,21 @@ import 'view-design/dist/styles/iview.css';
 
 Vue.use(ViewUI);
 
-
+//
 import VueSocketIO from 'vue-socket.io'
 
 Vue.use(new VueSocketIO({
     debug: true,
     // 服务器端地址
-    connection: 'http://localhost:3000',
+    connection: 'ws://localhost:3000',
     vuex: {
+        store,
     }
 }))
+
+// import socket from 'util/socket'
+
+
 
 
 

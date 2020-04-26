@@ -24,23 +24,8 @@
                 this.$nextTick(() => {
                     this.item = item;
                 })
-
-
             }
         },
-        // created() {
-        //     console.log(this)
-        //     this.$socket.emit('login', {
-        //         username: '老王',
-        //         password: 'password'
-        //     });
-        //
-        //     //接收服务端的信息
-        //     this.sockets.subscribe('relogin', (data) => {
-        //         console.log(data)
-        //     })
-        // }
-
     }
 </script>
 

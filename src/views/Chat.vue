@@ -20,11 +20,13 @@
     </div>
 </template>
 <script>
+    // import Message from "../model/Message";
+
     export default {
         data() {
             return {
                 message: "",
-                toUser:this.$route.query.nickName,
+                toUser: this.$route.query.nickName,
                 user: JSON.parse(sessionStorage.getItem("user"))
             }
         },
@@ -33,12 +35,11 @@
                 this.$router.push('/message')
             },
             sendMessage() {
-                this.$socket.emit("sendMessage", this.message);
+                // this.$socket.emit("sendMessage", new Message(this.message, this.$store.getters.GET_USER, this.toUser));
                 this.handleMessage('my-message', this.user, this.message)
                 this.message = '';
             },
             handleMessage(type, user, message) {
-
                 //头像
                 const avatar = document.createElement('img');
                 avatar.setAttribute("src", user.avatar);
@@ -61,10 +62,5 @@
                 msgBox.appendChild(div);
             }
         },
-        mounted() {
-            this.$socket.on("getMessage", m => {
-                this.handleMessage('others', m.user, m.message);
-            })
-        }
     }
 </script>

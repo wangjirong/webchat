@@ -6,7 +6,7 @@
                          :key="friend.id"
                          class="friend flex-vertical-start">
                 <img :src="friend.avatar" alt="" class="avatar">
-                <span class="friend-name">{{friend.nickName}}</span>
+                <span class="friend-name">{{friend.userName}}</span>
             </router-link>
         </div>
     </div>
@@ -21,32 +21,15 @@
                         friends: [
                             {
                                 avatar: require('../../assets/image/avatar1.jpg'),
-                                nickName: "冯明强"
+                                userName: "408718358",
+                                nickName:"408718358@qq.com"
                             },
                             {
                                 avatar: require('../../assets/image/avatar1.jpg'),
-                                nickName: "王岩松"
+                                userName:"54136072",
+                                nickName: "54136072@qq.com"
                             },
-                            {
-                                avatar: require('../../assets/image/avatar1.jpg'),
-                                nickName: "谢江涛"
-                            },
-                            {
-                                avatar: require('../../assets/image/avatar1.jpg'),
-                                nickName: "张三"
-                            },
-                            {
-                                avatar: require('../../assets/image/avatar1.jpg'),
-                                nickName: "李四"
-                            },
-                            {
-                                avatar: require('../../assets/image/avatar1.jpg'),
-                                nickName: "王五"
-                            },
-                            {
-                                avatar: require('../../assets/image/avatar1.jpg'),
-                                nickName: "谢广坤"
-                            },
+
                         ]
                     },
 

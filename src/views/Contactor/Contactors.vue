@@ -39,7 +39,18 @@
                 } else if (res.status === 211) this.$Message.error("抱歉，没有找到");
             },
             async addFriend() {
-
+                //408718358@qq.com
+                //54136072@qq.com
+                this.$socket.emit('addFriend', {
+                    user: this.$store.getters.GET_USER,
+                    toUser: this.foundUser,
+                    code: 200
+                });
+            }
+        },
+        socket: {
+            reAddFriend(data) {
+                console.log(data);
             }
         }
     }
