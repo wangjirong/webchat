@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
     {
@@ -65,12 +65,22 @@ const routes = [
         name: "ForgetPassword",
         component: () => import('../views/ForgetPassword')
     }
-]
-
+];
 const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
     routes
+});
+router.beforeEach((to, from, next) => {
+    if (to.requireAuth) {
+        const user = sessionStorage.getItem("user");
+        if (user) next();
+        else {
+            if (to.name === ("Login" || "Register")) next();
+            else next({name: 'Login'});
+        }
+    } else next();
 })
+
 
 export default router

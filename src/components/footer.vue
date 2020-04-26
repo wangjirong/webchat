@@ -42,7 +42,7 @@
         },
         created() {
             const name = this.$route.name;
-            let index;
+            let index=0;
             switch (name) {
                 case "Message":
                     index = 0;
